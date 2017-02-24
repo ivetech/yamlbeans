@@ -16,8 +16,6 @@
 
 package com.esotericsoftware.yamlbeans;
 
-import static com.esotericsoftware.yamlbeans.parser.EventType.*;
-
 import com.esotericsoftware.yamlbeans.Beans.Property;
 import com.esotericsoftware.yamlbeans.parser.AliasEvent;
 import com.esotericsoftware.yamlbeans.parser.CollectionStartEvent;
@@ -28,7 +26,6 @@ import com.esotericsoftware.yamlbeans.parser.ScalarEvent;
 import com.esotericsoftware.yamlbeans.scalar.ScalarSerializer;
 import com.esotericsoftware.yamlbeans.tokenizer.Tokenizer.TokenizerException;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -39,6 +36,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import static com.esotericsoftware.yamlbeans.parser.EventType.DOCUMENT_START;
+import static com.esotericsoftware.yamlbeans.parser.EventType.MAPPING_END;
+import static com.esotericsoftware.yamlbeans.parser.EventType.SCALAR;
+import static com.esotericsoftware.yamlbeans.parser.EventType.SEQUENCE_END;
+import static com.esotericsoftware.yamlbeans.parser.EventType.STREAM_END;
 
 /** Deserializes Java objects from YAML.
  * @author <a href="mailto:misc@n4te.com">Nathan Sweet</a> */
@@ -425,9 +428,5 @@ public class YamlReader {
 			this(message, null);
 		}
 	}
-
-	public static void main (String[] args) throws Exception {
-		YamlReader reader = new YamlReader(new FileReader("test/test.yml"));
-		System.out.println(reader.read());
-	}
-}
+	
+}
